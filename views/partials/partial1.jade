@@ -1,2 +1,17 @@
-p This is the partial for view 1.
-p The current time is {{time}}
+p wifi network list
+//p The current time is {{time}}
+ul.menu
+    li(ng-repeat="network in networks")
+        div
+            span ssid:{{network.ssid}}
+        span bssid{{network.bssid}}
+        span channel:{{network.channel}}
+        span(ng-if="hacks[network.name]")
+            span {{hacks[network.name].wifiPassword}}
+            span {{hacks[network.name].adminPassword}}
+        button hack start
+div(ng-if="errors")
+    p error
+    ul.menu
+        li(ng-repeat="error in errors track by $index")
+            pre {{error}}
